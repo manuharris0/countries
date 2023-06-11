@@ -1,7 +1,9 @@
 require("dotenv").config();
+// Configuración para las credenciales
 
 const { Sequelize } = require("sequelize");
 // Acá requiero a la clase de Sequelize 
+
 const countryModel = require('./models/Country');
 const activityModel = require('./models/Activity');
 // Traigo los modelos
@@ -46,6 +48,7 @@ const { Country, Activity } = sequelize.models;
 
 Country.belongsToMany(Activity, {through: 'country_activity'});
 Activity.belongsToMany(Country, {through: 'country_activity'});
+// Relaciones N:N de los modelos a trvez de una tabla intermedia
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
